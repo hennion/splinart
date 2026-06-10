@@ -1,0 +1,84 @@
+[build-system]
+requires = ["setuptools"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "splinart-2026"
+version = "0.1.1"
+dependencies = ["numpy>=2", "matplotlib>=3.5"]
+
+[tool.setuptools.packages.find]
+include = ["splinart*"]
+
+[project.scripts]
+splinart = "splinart.scripts.cli_splinart:main"
+
+[tool.pixi.workspace]
+channels = ["conda-forge"]
+platforms = ["osx-arm64", "linux-64"]
+
+[tool.pixi.tasks]
+
+[tool.pixi.environments]
+default = ["dev"]
+publish = ["pypi-release", "conda-publish"]
+test = ["test", "dev"]
+test-conda = ["test-conda"]
+linter = ["linters"]
+docs = ["doc", "dev"]
+
+[tool.pixi.feature.pypi-release.tasks]
+build-sdist = "python -m build --sdist"
+build-wheel = "python -m build --wheel"
+build = { depends-on = ["build-sdist", "build-wheel"] }
+
+[tool.pixi.feature.pypi-release.dependencies]
+twine = ">=6.2.0,<7"
+
+[tool.pixi.feature.pypi-release.pypi-dependencies]
+build = ">=1.5.0,<2"
+
+[tool.pixi.feature.dev.pypi-dependencies]
+splinart-2026 = { path = ".", editable = true }
+
+[tool.pixi.feature.conda-publish.tasks]
+build = "conda-build recipes/ --output-folder ./dist/conda"
+
+[tool.pixi.feature.conda-publish.dependencies]
+conda-build = "*"
+anaconda-client = "*"
+
+[tool.pixi.feature.test.tasks]
+install = "pip install --extra-index-url https://test.pypi.org/simple/ splinart-2026"
+
+[tool.pixi.feature.test.dependencies]
+pip = "*"
+pytest = ">=9.0.3,<10"
+pytest-cov = "*"
+pytest-mpl = "*"
+
+[tool.pixi.feature.test-conda.tasks]
+install = "conda create -y -p /tmp/test-splinart-conda -c ./dist/conda -c conda-forge splinart_2026"
+test = "conda run -p /tmp/test-splinart-conda python -c \"import splinart; print('OK')\""
+clean = "rm -rf /tmp/test-splinart-conda"
+
+[tool.pixi.feature.test-conda.dependencies]
+conda-libmamba-solver = "*"
+conda = "*"
+
+[tool.pixi.feature.linters.dependencies]
+pylint = "*"
+ruff = "*"
+
+[tool.pixi.feature.doc.dependencies]
+sphinx = "*"
+numpydoc = ">=1.10.0,<2"
+myst-parser = "*"
+nbsphinx = "*"
+nbsphinx-link = ">=1.3.0,<2"
+docutils = "0.20"
+pydata-sphinx-theme = "*"
+
+[tool.pixi.dependencies]
+pre-commit = ">=4.6.0,<5"
+
