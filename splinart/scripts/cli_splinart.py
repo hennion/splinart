@@ -5,10 +5,10 @@
 """
 cli
 """
-from __future__ import print_function, division, absolute_import
+
 import argparse
-import splinart as spl
 import numpy as np
+import splinart as spl
 
 
 def circle(img):
