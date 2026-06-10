@@ -13,15 +13,15 @@ def splint(xs, ys, y2s, x, y):
 
     Parameters
     ----------
-    xs
+    xs: np.ndarray
         The x coordinates of the cubic spline.
-    ys
+    ys: np.ndarray
         The y coordinates of the cubic spline.
-    y2s
+    y2s: np.ndarray
         The second derivative of the cubic spline.
-    x
+    x: np.ndarray
         The sample where to evaluation the cubic spline.
-    y
+    y: np.ndarray
         The y coordinates of the sample.
 
     See Also
