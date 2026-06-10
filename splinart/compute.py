@@ -3,6 +3,7 @@
 #
 # License: BSD 3 clause
 """Material to update the output image using a cunbic spline equation."""
+
 import numpy as np
 
 from .spline import spline, splint
@@ -44,7 +45,7 @@ def update_path(path, periodic=False, scale_value=0.00001):
         path[-1] = path[0]
 
 
-# pylint: disable=too-many-arguments
+# pylint: disable=too-many-arguments,  disable=too-many-positional-arguments
 def update_img(
     img,
     path,
