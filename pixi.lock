@@ -8183,7 +8183,7 @@ packages:
   size: 433413
   timestamp: 1764777166076
 - pypi: .
-  name: splinart-2026
+  name: splinart-mag
   requires_dist:
   - numpy>=2
   - matplotlib>=3.5

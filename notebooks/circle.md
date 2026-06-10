@@ -15,7 +15,7 @@ jupyter:
 
 # Splinart on a circle
 
-In this tutorial, we will see how to use splinart with a circle. 
+In this tutorial, we will see how to use splinart with a circle.
 
 First of all, we have to create a circle.
 
