@@ -3,7 +3,7 @@ requires = ["setuptools"]
 build-backend = "setuptools.build_meta"
 
 [project]
-name = "splinart-2026"
+name = "splinart-mag"
 version = "0.1.1"
 dependencies = ["numpy>=2", "matplotlib>=3.5"]
 
@@ -39,7 +39,7 @@ twine = ">=6.2.0,<7"
 build = ">=1.5.0,<2"
 
 [tool.pixi.feature.dev.pypi-dependencies]
-splinart-2026 = { path = ".", editable = true }
+splinart-mag = { path = ".", editable = true }
 
 [tool.pixi.feature.conda-publish.tasks]
 build = "conda-build recipes/ --output-folder ./dist/conda"
@@ -81,4 +81,3 @@ pydata-sphinx-theme = "*"
 
 [tool.pixi.dependencies]
 pre-commit = ">=4.6.0,<5"
-
